@@ -1,3 +1,4 @@
+//from沒有用模板函數實現
 #pragma once
 
 
