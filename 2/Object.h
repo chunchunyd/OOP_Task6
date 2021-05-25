@@ -51,6 +51,9 @@ private:
 	std::vector<Object> x; //Object is not defined???	-->	先声明
 public:
 	VectorContent(const std::vector<Object>& _x): x(_x) {}
+	Object& operator[](int id){
+		return x.at(id);
+	}
 };
 
 
@@ -80,9 +83,9 @@ public:
 	Object(const CustomClass &x):pt(std::make_shared<CustomContent>(x)){
 	}
 	// The following codes are not working
-	// Object(const std::vector<Object> &x){
-	// 	pt = new VectorContent(x);
-	// }
+	Object(const std::vector<Object> &x){
+		pt = std::make_shared<VectorContent>(x);
+	}
 	
 //析构函数
 	~Object(){
@@ -102,6 +105,9 @@ public:
 	Object& operator+=(const std::string &y){
 		std::dynamic_pointer_cast<StringContent>(pt)->operator+=(y);
 		return *this;
+	}
+	Object& operator[](int id){
+		return (*std::dynamic_pointer_cast<VectorContent>(pt))[id];
 	}
 
 	//need more operators......
