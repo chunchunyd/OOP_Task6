@@ -41,21 +41,23 @@ int main()
     }
     CustomClass::detect_leak();
 
-    // {
-    //     //subtask 3
-    //     std::vector<Object> arr;
-    //     arr.push_back(Object(1));
-    //     arr.push_back(Object("text"));
-    //     arr.push_back(Object(CustomClass("obj3")));
-    //     std::cout << arr[0] << " " << arr[1] << std::endl; //1 text
-    //     arr[0] = arr[1];
-    //     std::cout << arr[0] << " " << arr[1] << std::endl; //text text
-    //     arr[1] += std::string("1");
-    //     std::cout << arr[0] << " " << arr[1] << std::endl; //text1 text1
-    //     arr[0] = arr[2];
-    //     std::cout << arr[1] << std::endl; //text1
-    // }
-    // CustomClass::detect_leak();
+    {
+        //subtask 3
+        std::vector<Object> arr;
+        arr.push_back(Object(1));
+        arr.push_back(Object("text"));
+        arr.push_back(Object(CustomClass("obj3")));
+        std::cout << arr[0] << " " << arr[1] << std::endl; //1 text
+        arr[0] = arr[1];
+        std::cout << arr[0] << " " << arr[1] << std::endl; //text text
+        arr[1] += std::string("1");
+        std::cout << arr[0] << " " << arr[1] << std::endl; //text1 text1
+        arr[0] = arr[2];
+        std::cout << arr[1] << std::endl; //text1
+    }
+    CustomClass::detect_leak();
+
+
 
     // {
     //     //subtask 4
@@ -77,7 +79,7 @@ int main()
 
     //     arr[0][0] = arr[2];
     // }
-    CustomClass::detect_leak();
+    // CustomClass::detect_leak();
 
     return 0;
 }

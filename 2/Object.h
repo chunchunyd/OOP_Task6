@@ -1,9 +1,12 @@
 #pragma once
 #include <list>
+#include <vector>
 #include <iostream>
 #include <memory>
 
 #include "CustomClass.h"
+
+class Object;
 
 class Content
 {
@@ -42,13 +45,13 @@ public:
 };
 
 // The following codes are not working
-// class VectorContent: public Content
-// {
-// private:
-// 	std::vector<Object> x; //Object is not defined???
-// public:
-// 	VectorContent(const std::vector<Object>& _x): x(_x) {}
-// };
+class VectorContent: public Content
+{
+private:
+	std::vector<Object> x; //Object is not defined???	-->	先声明
+public:
+	VectorContent(const std::vector<Object>& _x): x(_x) {}
+};
 
 
 class CustomContent: public Content
