@@ -1,0 +1,167 @@
+【单选】以下哪份代码可以编译通过，且运行时一定能够完成对arr数组从大到小的正确排序:
+
+A.                  //错，比较的类型是int，数组是double
+
+#include <algorithm>
+bool comp(int a, int b) {return a > b;}
+int main(){
+    double arr[5] = { 5.0, 2.0, 2.2, 1.0, 7.0 };
+    std::sort(arr, arr + 5, comp);
+    return 0;
+}
+B.
+
+#include <algorithm>
+#include <functional>
+int main(){
+    double arr[5] = { 5.0, 2.0, 2.2, 1.0, 7.0 };
+    std::sort(arr, arr + 5, std::less<double>);
+    return 0;
+}
+C.                  //错，没加模板
+
+#include <algorithm>
+class Greater {
+public:
+    bool operator()(T &a, T &b) const    {
+        return a > b;
+    }
+};
+int main(){
+    double arr[5] = { 5.0, 2.0, 2.2, 1.0, 7.0 };
+    std::sort(arr, arr + 5, Greater<double>());
+    return 0;
+}
+D.                  //
+
+#include <algorithm>
+int comp(double a, double b) {return a > b;}
+int main(){
+    double arr[5] = { 5.0, 2.0, 2.2, 1.0, 7.0 };
+    std::sort(arr, arr + 5, comp);
+    return 0;
+}
+【单选】以下说法正确的是:
+
+A. 一个裸指针可以初始化多个智能指针，这几个智能指针将共享同一个辅助指针
+
+B. 不能将多个智能指针指向同一个对象
+
+C. 使用 类对象的指针 ptr 构造 shared_ptr 后，则 delete ptr; 是合法操作，不会造成潜在的问题
+
+D. 不能使用智能指针维护对象数组
+
+【单选】以下说法正确的是:
+
+A. 函数对象不能定义析构函数
+
+B. 可以使用 unique_ptr 对象作为初始化参数构造 shared_ptr 对象
+
+C. 只要重载了 operator() 运算符，无论其访问该运算符是public还是private，该类对象都可以认为是函数对象
+
+D. unique_ptr 指针不能复制，只能移动
+
+【单选】下列说法正确的是（为简便省略了头文件，注意局部变量初始化不保证为0）:
+
+A. 执行下列代码片段后，strlen(a)将为 10
+
+void func() {
+  char a[20];
+  int i = 0;
+  while (strlen(a) < 10) {
+      a[i] = char(i + int('a'));
+      i++;
+  }
+  std::cout << a << std::endl;
+}
+B. 下列代码片段可以修改字符串a中的字符，不存在产生编译错误
+
+void func() {
+  std::string a = "abcdefg";
+  char* b = a.c_str();
+  for (int i = 0; i < a.size(); ++i) {
+      b[i] = char(i + 'A');
+  }
+  std::cout << a << std::endl;
+}
+C. 下列代码片段可以将字符串b拷贝至a，最终strlen(a)等于strlen(b)
+
+void func() {
+  char a[20];
+  const char* b = "abcdefg";
+  int len = strlen(b);
+  for (int i = 0; i < len; ++i) {
+      a[i] = b[i];
+  }
+  std::cout << a << std::endl;
+}
+D. 下列代码片段可以正常修改字符串a中的字符，不产生编译错误
+
+void func() {
+  std::string a = "abcdefg";
+  for (int i = 0; i < a.size(); ++i) {
+      a.at(i) = char(i + 'A');
+  }
+  std::cout << a << std::endl;
+}
+【多选】关于下列函数，说法正确的有（为简便省略了头文件）：
+
+A. 以下函数的功能是将target的前缀修改为prefix，但是算法复杂度可以进一步降低
+
+void replace_prefix(const char * prefix, char * target){
+    for (int i = 0; i < min(strlen(prefix), strlen(target)); ++i){
+        target[i] = prefix[i];
+    }
+}
+B. 以下函数的功能是将字符串数组suffixes中的字符串依次拼接到target后面，但是在不改变函数签名的情况下，可以通过优化内部实现，减少对象创建和拷贝等操作
+
+void append_suffixes(string & target, vector<string> & suffixes){
+    for(auto & suffix: suffixes){
+        target = target + suffix;
+    }
+}
+C. 以下函数的功能是将字符串数组suffixes中的字符串依次拼接到target后面，其中 target += suffix; 相比 target = target + suffix; 更加高效
+
+void append_suffixes(string & target, vector<string> & suffixes){
+    for(auto & suffix: suffixes){
+        target += suffix;
+    }
+}
+D. 以下函数的功能是将字符串数组suffixes中的字符串依次拼接到target后面，其中 target.append(suffix) 相比 target = target + suffix; 更加高效
+
+void append_suffixes(string & target, vector<string> & suffixes){
+    for(auto & suffix: suffixes){
+        target.append(suffix);
+    }
+}
+【单选】对比 std::vector<char> a 和 std::string a ，下列哪种操作 std::vector 和 std::string 共同具有：
+
+A. std::cin >> a
+
+B. a.append("abc")
+
+C. std::sort(a.begin(), a.end())
+
+D. a.length()
+
+注意：第7、8题涉及第14课的内容，相关课程的讲授安排在本次作业结束前一周
+
+【多选】以下关于迭代器模式的说法正确的是:
+
+A. 迭代器模式是为了提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示。
+
+B. 迭代器类通常设计为存储类的友元，从而迭代器类可以访问存储类内部的数据。
+
+C. 存储器类需要是迭代器类的友元。
+
+D. 迭代器模式实现了算法和数据存储的隔离。
+
+【单选】以下关于模板方法和策略模式的说法不正确的是:
+
+A. 在设计思路上，模板方法模式优先考虑继承，策略模式优先考虑组合。
+
+B. 策略模式在策略组合时封装性较差, 较难处理业务场景十分复杂的情况。
+
+C. 当算法的每一个步骤都有多种解决方案时，模板方法优势较大。
+
+D. 使用接口类而不是具体类的实现进行编程有助于避免具体类的改变造成整个程序的大规模变化。
