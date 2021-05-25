@@ -10,6 +10,13 @@
 
         regex emailaddress("\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}")
     
+    3.函数指针
+    void increase(int &x){x++;}  void decrease(int &x){x--;}
+
+    void (*func)(int&); //声明函数指针
+    if(flag==1) {func=increase; } else {func=decrease;}
+
+
     3.函数对象
     greater是一个模板类
     greater<int>  用int实例化的类

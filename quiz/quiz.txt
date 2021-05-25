@@ -1,4 +1,4 @@
-【单选】以下哪份代码可以编译通过，且运行时一定能够完成对arr数组从大到小的正确排序:
+【单选】以下哪份代码可以编译通过，且运行时一定能够完成对arr数组从大到小的正确排序:  D
 
 A.                  //错，比较的类型是int，数组是double
 
@@ -9,7 +9,7 @@ int main(){
     std::sort(arr, arr + 5, comp);
     return 0;
 }
-B.
+B.                  //错，从小到大
 
 #include <algorithm>
 #include <functional>
@@ -25,14 +25,14 @@ class Greater {
 public:
     bool operator()(T &a, T &b) const    {
         return a > b;
-    }
+    }　
 };
 int main(){
     double arr[5] = { 5.0, 2.0, 2.2, 1.0, 7.0 };
     std::sort(arr, arr + 5, Greater<double>());
     return 0;
 }
-D.                  //
+D.                  //对
 
 #include <algorithm>
 int comp(double a, double b) {return a > b;}
@@ -41,40 +41,43 @@ int main(){
     std::sort(arr, arr + 5, comp);
     return 0;
 }
+【单选】以下说法正确的是:                           D
+
+A. 一个裸指针可以初始化多个智能指针，这几个智能指针将共享同一个辅助指针     //错，不能初始化多个智能指针
+
+B. 不能将多个智能指针指向同一个对象                                      //错，可以，用=就行
+
+C. 使用 类对象的指针 ptr 构造 shared_ptr 后，则 delete ptr; 是合法操作，不会造成潜在的问题      //use_count归零时重复删除
+
+D. 不能使用智能指针维护对象数组                                         //对，对象数组删除需要delete[] p;
+
 【单选】以下说法正确的是:
 
-A. 一个裸指针可以初始化多个智能指针，这几个智能指针将共享同一个辅助指针
+A. 函数对象不能定义析构函数             //？？？怎么定义呢？析构函数没有返回值，仿函数operator()()用什么做返回值呢？
 
-B. 不能将多个智能指针指向同一个对象
+B. 可以使用 unique_ptr 对象作为初始化参数构造 shared_ptr 对象            //错，unique_ptr独享
 
-C. 使用 类对象的指针 ptr 构造 shared_ptr 后，则 delete ptr; 是合法操作，不会造成潜在的问题
+C. 只要重载了 operator() 运算符，无论其访问该运算符是public还是private，该类对象都可以认为是函数对象    //错，public才可以
 
-D. 不能使用智能指针维护对象数组
+D. unique_ptr 指针不能复制，只能移动                            //对
 
-【单选】以下说法正确的是:
 
-A. 函数对象不能定义析构函数
 
-B. 可以使用 unique_ptr 对象作为初始化参数构造 shared_ptr 对象
 
-C. 只要重载了 operator() 运算符，无论其访问该运算符是public还是private，该类对象都可以认为是函数对象
+【单选】下列说法正确的是（为简便省略了头文件，注意局部变量初始化不保证为0）:            D
 
-D. unique_ptr 指针不能复制，只能移动
-
-【单选】下列说法正确的是（为简便省略了头文件，注意局部变量初始化不保证为0）:
-
-A. 执行下列代码片段后，strlen(a)将为 10
+A. 执行下列代码片段后，strlen(a)将为 10                     //对(错，a[20]没有初始化)
 
 void func() {
   char a[20];
   int i = 0;
   while (strlen(a) < 10) {
-      a[i] = char(i + int('a'));
+      a[i] = char(i + int('a'));        //abcdefghij
       i++;
   }
   std::cout << a << std::endl;
 }
-B. 下列代码片段可以修改字符串a中的字符，不存在产生编译错误
+B. 下列代码片段可以修改字符串a中的字符，不存在产生编译错误              //错，编译错误，"const char *" 类型的值不能用于初始化 "char *" 类型的实体
 
 void func() {
   std::string a = "abcdefg";
@@ -84,7 +87,7 @@ void func() {
   }
   std::cout << a << std::endl;
 }
-C. 下列代码片段可以将字符串b拷贝至a，最终strlen(a)等于strlen(b)
+C. 下列代码片段可以将字符串b拷贝至a，最终strlen(a)等于strlen(b)     //（错？同样没有初始化，但是结果对了）
 
 void func() {
   char a[20];
@@ -95,7 +98,7 @@ void func() {
   }
   std::cout << a << std::endl;
 }
-D. 下列代码片段可以正常修改字符串a中的字符，不产生编译错误
+D. 下列代码片段可以正常修改字符串a中的字符，不产生编译错误              //对
 
 void func() {
   std::string a = "abcdefg";
@@ -104,37 +107,54 @@ void func() {
   }
   std::cout << a << std::endl;
 }
-【多选】关于下列函数，说法正确的有（为简便省略了头文件）：
 
-A. 以下函数的功能是将target的前缀修改为prefix，但是算法复杂度可以进一步降低
+
+【多选】关于下列函数，说法正确的有（为简便省略了头文件）：              BCD
+
+A. 以下函数的功能是将target的前缀修改为prefix，但是算法复杂度可以进一步降低         //错
 
 void replace_prefix(const char * prefix, char * target){
     for (int i = 0; i < min(strlen(prefix), strlen(target)); ++i){
         target[i] = prefix[i];
     }
 }
-B. 以下函数的功能是将字符串数组suffixes中的字符串依次拼接到target后面，但是在不改变函数签名的情况下，可以通过优化内部实现，减少对象创建和拷贝等操作
+B. 以下函数的功能是将字符串数组suffixes中的字符串依次拼接到target后面，但是在不改变函数签名的情况下，可以通过优化内部实现，减少对象创建和拷贝等操作     //对，改成target.append(suffix)
 
 void append_suffixes(string & target, vector<string> & suffixes){
     for(auto & suffix: suffixes){
         target = target + suffix;
     }
 }
-C. 以下函数的功能是将字符串数组suffixes中的字符串依次拼接到target后面，其中 target += suffix; 相比 target = target + suffix; 更加高效
+C. 以下函数的功能是将字符串数组suffixes中的字符串依次拼接到target后面，其中 target += suffix; 相比 target = target + suffix; 更加高效         //对，右边先拼接临时变量，赋值给左
 
 void append_suffixes(string & target, vector<string> & suffixes){
     for(auto & suffix: suffixes){
         target += suffix;
     }
 }
-D. 以下函数的功能是将字符串数组suffixes中的字符串依次拼接到target后面，其中 target.append(suffix) 相比 target = target + suffix; 更加高效
+D. 以下函数的功能是将字符串数组suffixes中的字符串依次拼接到target后面，其中 target.append(suffix) 相比 target = target + suffix; 更加高效       //对，见下面
 
 void append_suffixes(string & target, vector<string> & suffixes){
     for(auto & suffix: suffixes){
         target.append(suffix);
     }
 }
-【单选】对比 std::vector<char> a 和 std::string a ，下列哪种操作 std::vector 和 std::string 共同具有：
+
+        str += "here";
+
+        处理步骤实际上是通过建立一个StringBuffer,然后调用append(),最后
+
+        再将StringBuffer toSting();
+
+        这样的话String的连接操作就比StringBuffer多出了一些附加操作,当然效率上要打折扣.
+
+        并且由于String 对象是不可变对象,每次操作Sting 都会重新建立新的对象来保存新的值.
+
+        这样原来的对象就没用了,就要被垃圾回收.这也是要影响性能的.
+
+
+
+【单选】对比 std::vector<char> a 和 std::string a ，下列哪种操作 std::vector 和 std::string 共同具有：      C
 
 A. std::cin >> a
 
@@ -148,7 +168,7 @@ D. a.length()
 
 【多选】以下关于迭代器模式的说法正确的是:
 
-A. 迭代器模式是为了提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示。
+A. 迭代器模式是为了提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示。   //对
 
 B. 迭代器类通常设计为存储类的友元，从而迭代器类可以访问存储类内部的数据。
 
