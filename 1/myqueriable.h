@@ -12,7 +12,7 @@ using namespace std;
 template<typename T>
 class MyQueriable{
 public:
-    T m_data[1000];
+    T m_data[1000000];
     // int idx_begin;
     // int idx_end;
     int m_num;
