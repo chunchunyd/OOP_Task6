@@ -2,8 +2,9 @@
 #include<iostream>
 
 //基类
-PerformStrategy::PerformStrategy(int perform) : p_perform(perform)
+PerformStrategy::PerformStrategy(double perform) : p_perform(perform)
 {
+    // std::cout<<"构造函数：p_perform="<<p_perform<<std::endl;
 }
 
 int PerformStrategy::get_bonus_salary()
@@ -24,5 +25,7 @@ void mPerformStrategy::calc_bonus_salary(int bs){
 //lPerformStrategy
 void lPerformStrategy::calc_bonus_salary(int bs){
     bonus_salary = 2 * p_perform * bs;
-    std::cout<<"bonus:"<<bonus_salary<<std::endl;
+    // std::cout<<"p_perform:"<<p_perform<<std::endl;
+    // std::cout<<"bs:"<<bs<<std::endl;
+    // std::cout<<"bonus:"<<bonus_salary<<std::endl;
 }

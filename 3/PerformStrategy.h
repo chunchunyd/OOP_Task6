@@ -8,7 +8,7 @@ protected:
     int bonus_salary;       //向下取整
 public:
     //构造函数
-    PerformStrategy(int perform);
+    PerformStrategy(double perform);
 
     //成员函数
     int get_bonus_salary();
