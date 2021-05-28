@@ -20,11 +20,16 @@ void sPerformStrategy::calc_bonus_salary(int bs){
 //mPerformStrategy
 void mPerformStrategy::calc_bonus_salary(int bs){
     bonus_salary = p_perform * bs;
+    
+    // std::cout<<"p_perform:"<<p_perform<<std::endl;
+    // std::cout<<"bs:"<<bs<<std::endl;
+    // std::cout<<"bonus:"<<bonus_salary<<std::endl;
 }
 
 //lPerformStrategy
 void lPerformStrategy::calc_bonus_salary(int bs){
     bonus_salary = 2 * p_perform * bs;
+
     // std::cout<<"p_perform:"<<p_perform<<std::endl;
     // std::cout<<"bs:"<<bs<<std::endl;
     // std::cout<<"bonus:"<<bonus_salary<<std::endl;

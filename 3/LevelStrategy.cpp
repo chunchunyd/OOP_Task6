@@ -9,7 +9,7 @@ void P1LStrategy::calc_base_salary(){
 }
 
 void P2LStrategy::calc_base_salary(){
-    base_salary = 25000;
+    base_salary = 5000;
 }
 
 void P3LStrategy::calc_base_salary(){
