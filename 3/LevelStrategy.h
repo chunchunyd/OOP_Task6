@@ -4,8 +4,10 @@
 class LevelStrategy
 {
 protected:
+    //基础奖金
     int base_salary;
 public:
+    //成员函数
     int get_base_salary();
     virtual void calc_base_salary() = 0;
 };

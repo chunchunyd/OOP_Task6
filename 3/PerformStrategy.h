@@ -4,8 +4,9 @@
 class PerformStrategy
 {
 protected:
-    double p_perform;
-    int bonus_salary;       //向下取整
+    //成员变量
+    double p_perform;       //绩效
+    int bonus_salary;       //bonus,向下取整
 public:
     //构造函数
     PerformStrategy(double perform);
