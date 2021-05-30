@@ -29,7 +29,7 @@ public:
         return m_data[id];
     }
     T sum(){
-        int m_sum = 0;
+        T m_sum = 0;
         for(int i=0;i<m_num;i++){
             m_sum+=m_data[i];
         }
