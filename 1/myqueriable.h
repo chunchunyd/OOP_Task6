@@ -12,7 +12,7 @@ using namespace std;
 template<typename T>
 class MyQueriable{
 public:
-    T m_data[1000000];
+    T m_data[100000];
     // int idx_begin;
     // int idx_end;
     int m_num;
@@ -55,31 +55,62 @@ public:
 };
 
 
+
+// //1.
 // template<typename T>
-MyQueriable<int> from(list<int> data){
-    MyQueriable<int> res;
+// auto from(T &data){
+//     typedef T data::value_type type;
+//     MyQueriable<type> res;
+//     for(auto &num:data){
+//         res.push(num);
+//     }
+//     return res;
+// }
+
+//2.
+template<typename T>
+MyQueriable<T> from(vector<T> &data){
+    MyQueriable<T> res;
     for(auto &num:data){
         res.push(num);
     }
     return res;
 }
-MyQueriable<int> from(vector<int> data){
-    MyQueriable<int> res;
-    for(auto &num:data){
-        res.push(num);
-    }
-    return res;
-}MyQueriable<float> from(list<float> data){
-    MyQueriable<float> res;
-    for(auto &num:data){
-        res.push(num);
-    }
-    return res;
-}MyQueriable<float> from(vector<float> data){
-    MyQueriable<float> res;
+template<typename T>
+MyQueriable<T> from(list<T> &data){
+    MyQueriable<T> res;
     for(auto &num:data){
         res.push(num);
     }
     return res;
 }
+
+
+// // template<typename T>
+// MyQueriable<int> from(list<int> data){
+//     MyQueriable<int> res;
+//     for(auto &num:data){
+//         res.push(num);
+//     }
+//     return res;
+// }
+// MyQueriable<int> from(vector<int> data){
+//     MyQueriable<int> res;
+//     for(auto &num:data){
+//         res.push(num);
+//     }
+//     return res;
+// }MyQueriable<float> from(list<float> data){
+//     MyQueriable<float> res;
+//     for(auto &num:data){
+//         res.push(num);
+//     }
+//     return res;
+// }MyQueriable<float> from(vector<float> data){
+//     MyQueriable<float> res;
+//     for(auto &num:data){
+//         res.push(num);
+//     }
+//     return res;
+// }
 //PCH警告:头停止点不在文件范围内。(一用模板函数就会出现)
